@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import heroImage from "@assets/SocialLab-Home-Main-Slider-2_1783330194635.png";
 
 const SLIDES = [
   "Hero",
@@ -131,12 +132,12 @@ function ProgressRail({ activeIndex, onJump }: { activeIndex: number, onJump: (i
 
 function HeroSlide() {
   return (
-    <div className="h-full w-full bg-sand flex flex-col md:flex-row items-center justify-center px-6 md:px-24 relative overflow-hidden">
+    <div className="h-full w-full bg-sand flex flex-col md:flex-row items-center justify-center px-6 md:px-24 md:gap-8 relative overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="w-full md:w-1/2 text-left z-10 pt-20 md:pt-0"
+        className="w-full md:w-1/2 lg:w-[40%] md:min-w-0 md:shrink-0 text-left z-10 pt-20 md:pt-0"
       >
         <p className="font-mono text-primary-teal mb-3 md:mb-4 tracking-widest uppercase text-xs md:text-sm">INNOVATION FACTORY & ACADEMY</p>
         <h1 className="text-4xl md:text-8xl font-medium text-primary-teal leading-[1.15] md:leading-[1.1] tracking-[0.06em] md:tracking-[0.12em] mb-4 md:mb-6">
@@ -154,35 +155,17 @@ function HeroSlide() {
           </button>
         </div>
       </motion.div>
-      <div className="w-full md:w-1/2 h-full flex items-center justify-center relative mt-6 md:mt-0">
-        <svg viewBox="0 0 400 400" className="w-full max-w-[220px] md:max-w-md h-auto">
-          {/* Abstract background blobs */}
-          <motion.circle cx="200" cy="200" r="140" fill="#F4A261" opacity="0.2"
-            animate={{ y: [-10, 10, -10] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
-          
-          {/* Concentric arcs */}
-          <motion.circle cx="200" cy="200" r="120" fill="none" stroke="#00635F" strokeWidth="1" strokeDasharray="4 8"
-            initial={{ rotate: 0 }} animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} />
-          <motion.path d="M 200 60 A 140 140 0 0 1 340 200" fill="none" stroke="#D6766B" strokeWidth="2"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.5, ease: EASE }} />
-          <motion.path d="M 60 200 A 140 140 0 0 0 200 340" fill="none" stroke="#00635F" strokeWidth="2"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.2, ease: EASE }} />
-            
-          {/* Network nodes */}
-          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}>
-            <line x1="200" y1="200" x2="280" y2="120" stroke="#00635F" strokeWidth="1" opacity="0.5" />
-            <line x1="200" y1="200" x2="140" y2="140" stroke="#00635F" strokeWidth="1" opacity="0.5" />
-            <line x1="200" y1="200" x2="160" y2="280" stroke="#00635F" strokeWidth="1" opacity="0.5" />
-            <circle cx="200" cy="200" r="8" fill="#D6766B" />
-            <circle cx="280" cy="120" r="4" fill="#E94B2E" />
-            <circle cx="140" cy="140" r="5" fill="#00635F" />
-            <circle cx="160" cy="280" r="4" fill="#E94B2E" />
-          </motion.g>
-
-          {/* Central geometric motif representing brain/network */}
-          <motion.path d="M180,180 L220,180 L230,210 L170,210 Z" fill="none" stroke="#00635F" strokeWidth="1.5"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} />
-        </svg>
+      <div className="w-full md:w-1/2 lg:w-[60%] h-full flex items-center justify-center lg:justify-end relative mt-6 md:mt-0">
+        <motion.img
+          src={heroImage}
+          alt="SocialLab AI research illustration"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: EASE }}
+          animate={{ y: [0, -12, 0] }}
+          className="w-full max-w-[280px] md:max-w-xs lg:max-w-2xl h-auto object-contain"
+          style={{ transitionProperty: "opacity, transform" }}
+        />
       </div>
     </div>
   );
