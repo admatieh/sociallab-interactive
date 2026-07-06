@@ -5,7 +5,7 @@ import path from "path";
 
 
 const port = Number(process.env.PORT) || 5173;
-const basePath = process.env.BASE_PATH || "/";
+const basePath = process.env.BASE_PATH || "/sociallab-interactive/";
 
 export default defineConfig({
   base: basePath,
