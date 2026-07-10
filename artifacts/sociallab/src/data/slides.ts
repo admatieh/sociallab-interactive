@@ -292,7 +292,6 @@ export const closing = {
     "Work across health, media, governance, crisis response, education, and environment",
     "Public frameworks, platforms, academy programs, and project portfolio",
   ],
-  cta: "START A CONVERSATION",
   credibilityCategories: [
     "Academic Partners",
     "NGO Foundations",
@@ -302,11 +301,6 @@ export const closing = {
     "Research Labs",
   ],
   copyright: "© 2026 SOCIALLAB. ALL RIGHTS RESERVED.",
-  socialLinks: [
-    { label: "LINKEDIN", href: "#" },
-    { label: "TWITTER", href: "#" },
-    { label: "GITHUB", href: "#" },
-  ],
 };
 
 // ------ Navbar slide labels ------------------------------------

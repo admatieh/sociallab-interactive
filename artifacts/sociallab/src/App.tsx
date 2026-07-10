@@ -639,21 +639,12 @@ function ClosingSlide() {
           ))}
         </motion.div>
 
-        <motion.button
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-coral text-cream px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg tracking-widest hover:bg-orange-red transition-all hover:-translate-y-1 shadow-lg shadow-coral/20"
-        >
-          {d.cta}
-        </motion.button>
+
+
       </div>
 
-      <div className="mt-auto pt-10 md:pt-16 border-t border-sand/20 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm font-mono tracking-widest opacity-60 z-10 pb-10 md:pb-12">
-        <div className="mb-4 md:mb-0 text-center md:text-left">{d.copyright}</div>
-        <div className="flex gap-6 md:gap-8">
-          {d.socialLinks.map((link) => (
-            <a key={link.label} href={link.href} className="hover:text-coral transition-colors">{link.label}</a>
-          ))}
-        </div>
+      <div className="mt-auto pt-8 md:pt-12 border-t border-sand/20 flex justify-center md:justify-start items-center text-xs md:text-sm font-mono tracking-widest opacity-60 z-10 pb-8 md:pb-10">
+        <div className="text-center md:text-left">{d.copyright}</div>
       </div>
     </div>
   );
