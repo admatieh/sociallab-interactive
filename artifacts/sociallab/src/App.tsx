@@ -655,59 +655,179 @@ function ClosingSlide() {
 // ================================================================
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const isAnimating = useRef(false);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  const slides = [
+    <HeroSlide />,
+    <WhatWeDoSlide />,
+    <WhoWeAreSlide />,
+    <MissionSlide />,
+    <CapabilitiesSlide />,
+    <RoadmapSlide />,
+    <NationalAIFrameworkSlide />,
+    <EcosystemSlide />,
+    <ProjectsSlide />,
+    <ClosingSlide />
+  ];
 
-    let timeout: number;
-    const handleScroll = () => {
-      if (timeout) cancelAnimationFrame(timeout);
-      timeout = requestAnimationFrame(() => {
-        const height = window.innerHeight;
-        const index = Math.round(container.scrollTop / height);
-        setActiveIndex(Math.min(Math.max(index, 0), SLIDE_LABELS.length - 1));
-      });
-    };
+  const numSlides = slides.length;
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      if (timeout) cancelAnimationFrame(timeout);
-    };
-  }, []);
-
-  const jumpToSlide = (index: number) => {
-    if (containerRef.current) {
-      containerRef.current.scrollTo({ top: index * window.innerHeight, behavior: "smooth" });
-      setActiveIndex(index);
-    }
+  const goToSlide = (index: number) => {
+    if (index < 0 || index >= numSlides || index === activeIndex || isAnimating.current) return;
+    isAnimating.current = true;
+    setActiveIndex(index);
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 500); // Transition duration
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        goToSlide(activeIndex + 1);
+      } else if (e.key === "ArrowLeft") {
+        goToSlide(activeIndex - 1);
+      }
+    };
+
+    let wheelTimeout: number | null = null;
+    let accumulatedDeltaY = 0;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Allow internal scrolling if the target or its parents have vertical overflow
+      const target = e.target as HTMLElement;
+      let el: HTMLElement | null = target;
+      let canScroll = false;
+      while (el && el !== document.body) {
+        const style = window.getComputedStyle(el);
+        const overflowY = style.overflowY;
+        if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight) {
+          // If trying to scroll down and not at bottom, or scroll up and not at top
+          if (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight - 1) {
+             canScroll = true;
+             break;
+          }
+          if (e.deltaY < 0 && el.scrollTop > 1) {
+             canScroll = true;
+             break;
+          }
+        }
+        el = el.parentElement;
+      }
+      
+      if (canScroll) return; // Let native scroll happen
+
+      // Otherwise handle slide navigation
+      e.preventDefault(); // Prevent default vertical scroll at document level
+      
+      accumulatedDeltaY += e.deltaY;
+      
+      if (!wheelTimeout) {
+        wheelTimeout = window.setTimeout(() => {
+          if (accumulatedDeltaY > 40) {
+            goToSlide(activeIndex + 1);
+          } else if (accumulatedDeltaY < -40) {
+            goToSlide(activeIndex - 1);
+          }
+          accumulatedDeltaY = 0;
+          wheelTimeout = null;
+        }, 100); // Debounce duration
+      }
+    };
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+      let el: HTMLElement | null = target;
+      let canScroll = false;
+      while (el && el !== document.body) {
+        const style = window.getComputedStyle(el);
+        const overflowY = style.overflowY;
+        if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight) {
+           canScroll = true;
+           break;
+        }
+        el = el.parentElement;
+      }
+      if (canScroll) return;
+
+      e.preventDefault();
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const dx = touchStartX - touchEndX;
+      const dy = touchStartY - touchEndY;
+      
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        if (dx > 0) goToSlide(activeIndex + 1);
+        else goToSlide(activeIndex - 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      if (wheelTimeout) clearTimeout(wheelTimeout);
+    };
+  }, [activeIndex]);
+
   return (
-    <div className="h-[100dvh] w-full overflow-hidden bg-off-white font-sans text-primary-teal">
-      <Navbar activeIndex={activeIndex} onJump={jumpToSlide} />
-      <ProgressRail activeIndex={activeIndex} onJump={jumpToSlide} />
+    <div className="h-[100dvh] w-full overflow-hidden bg-off-white font-sans text-primary-teal relative">
+      <Navbar activeIndex={activeIndex} onJump={goToSlide} />
+      <ProgressRail activeIndex={activeIndex} onJump={goToSlide} />
 
-      <div
-        ref={containerRef}
-        className="h-full w-full overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        <style>{`div::-webkit-scrollbar { display: none; }`}</style>
+      <div className="absolute inset-0 overflow-hidden">
+        {slides.map((slide, i) => {
+          let transform = "translateX(0)";
+          let opacity = 1;
+          let zIndex = 10;
+          let pointerEvents = "auto" as const;
 
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><HeroSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><WhatWeDoSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><WhoWeAreSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><MissionSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><CapabilitiesSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><RoadmapSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><NationalAIFrameworkSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><EcosystemSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><ProjectsSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><ClosingSlide /></section>
+          if (i < activeIndex) {
+            transform = "translateX(-100%)";
+            opacity = 0;
+            zIndex = 0;
+            pointerEvents = "none";
+          } else if (i > activeIndex) {
+            transform = "translateX(100%)";
+            opacity = 0;
+            zIndex = 0;
+            pointerEvents = "none";
+          }
+
+          return (
+            <div
+              key={i}
+              className="absolute inset-0 transition-all duration-500 ease-out"
+              style={{
+                transform,
+                opacity,
+                zIndex,
+                pointerEvents,
+              }}
+            >
+              {slide}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
