@@ -59,28 +59,12 @@ function Navbar({ activeIndex, onJump }: { activeIndex: number; onJump: (index: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 h-16 md:h-20 bg-off-white z-50 flex items-center justify-between px-4 md:px-16 border-b border-primary-teal/10">
-      {/* Logo — matches reference: "Social" / "innovations" stacked left, "lab" right */}
-      <div className="flex items-end leading-none gap-0">
-        <div className="flex flex-col">
-          <span
-            className="text-primary-teal font-semibold leading-none"
-            style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)", letterSpacing: "0.01em" }}
-          >
-            Social
-          </span>
-          <span
-            className="font-normal leading-none mt-[2px]"
-            style={{ fontSize: "clamp(0.55rem, 1vw, 0.72rem)", letterSpacing: "0.12em", color: "#b8a89a" }}
-          >
-            innovations
-          </span>
-        </div>
-        <span
-          className="text-coral font-light leading-none"
-          style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", letterSpacing: "-0.01em", marginLeft: "1px", marginBottom: "-1px" }}
-        >
-          lab
-        </span>
+      <div className="flex items-center">
+        <img 
+          src="/sociallab-interactive/assets/SocialLab-Logo-Expanded.png" 
+          alt="SocialLab" 
+          className="w-[120px] md:w-[160px] h-auto object-contain"
+        />
       </div>
 
       <div className="hidden md:flex items-center space-x-6">
