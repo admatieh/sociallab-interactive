@@ -7,39 +7,66 @@
 // ------ Slide 1: Hero / Opening --------------------------------
 export const hero = {
   label: "Innovation Factory & Academy",
-  titleLine1: "HUMAN-CENTERED",
-  titleLine2: "AI RESEARCH",
-  body: "SocialLab combines artificial intelligence, machine learning, data science, and social sciences to create practical systems for organizations and society.",
-  cta1: "OUR VISION",
-  cta2: "EXPLORE PROJECTS",
+  titleLine1: "RESPONSIBLE AI",
+  titleLine2: "FOR REAL-WORLD IMPLEMENTATION",
+  body: "SocialLab helps organizations, governments, and public-interest sectors move from AI ambition to real implementation through strategy, custom AI systems, data platforms, dashboards, governance frameworks, and training.",
 };
 
-// ------ Slide 2: Who SocialLab Is ------------------------------
-export const whoWeAre = {
-  title: "AN AI ECOSYSTEM,",
-  titleAccent: "NOT JUST AN AI AGENCY",
-  body: "SocialLab connects strategy, engineering, training, and public-impact work into one AI ecosystem — operating through two connected pillars: an Innovation Factory and an Academy.",
-  pillars: [
+// ------ Slide 2: What SocialLab Does (New) ---------------------
+export const whatWeDo = {
+  title: "WHAT SOCIALLAB",
+  titleAccent: "DOES",
+  body: "SocialLab helps organizations move from AI ambition to practical implementation by combining strategy, engineering, data science, governance, and training.",
+  items: [
     {
-      label: "Innovation Factory",
-      desc: "AI, ML, data systems, dashboards, and platforms for real-world use.",
+      title: "AI Strategy & Readiness",
+      desc: "AI assessments, roadmaps, governance, and responsible adoption planning.",
     },
     {
-      label: "Academy",
-      desc: "Training, capability building, and applied learning for organizations and professionals.",
+      title: "Custom AI & Data Systems",
+      desc: "Practical AI, ML, NLP, and data platforms built for real organizational use.",
     },
     {
-      label: "Community",
-      desc: "Events, roundtables, and knowledge exchange around responsible AI adoption.",
+      title: "Dashboards & Intelligence Platforms",
+      desc: "Business intelligence, monitoring systems, analytics dashboards, and decision-support tools.",
     },
     {
-      label: "Public Initiatives",
-      desc: "Public frameworks, platforms, and social-impact projects.",
+      title: "Public Frameworks & Platforms",
+      desc: "AI governance frameworks, public-interest platforms, and ecosystem-level digital properties.",
+    },
+    {
+      title: "Academy & Capability Building",
+      desc: "Training programs, applied learning, and team enablement for responsible AI adoption.",
     },
   ],
 };
 
-// ------ Slide 3: Mission & Vision -------------------------------
+// ------ Slide 3: Who SocialLab Is ------------------------------
+export const whoWeAre = {
+  title: "AN AI ECOSYSTEM,",
+  titleAccent: "NOT JUST AN AI AGENCY",
+  body: "SocialLab connects strategy, engineering, training, and public-impact work into one AI ecosystem. Our core engine drives delivery, while our broader layer connects AI with society.",
+  pillars: [
+    {
+      label: "Innovation Factory (Core Engine)",
+      desc: "AI, ML, data systems, dashboards, and platforms for real-world use.",
+    },
+    {
+      label: "Academy (Core Engine)",
+      desc: "Training, capability building, and applied learning for organizations and professionals.",
+    },
+    {
+      label: "Platforms & Portfolio (Ecosystem)",
+      desc: "Public-interest digital properties, open-source tools, and a portfolio of verified case studies.",
+    },
+    {
+      label: "Events & Initiatives (Ecosystem)",
+      desc: "Roundtables, knowledge exchange, and public frameworks for responsible AI adoption.",
+    },
+  ],
+};
+
+// ------ Slide 4: Mission & Vision -------------------------------
 export const mission = {
   title: "INTELLIGENCE FOR",
   titleAccent: "SOCIAL GOOD",
@@ -53,7 +80,7 @@ export const mission = {
   ],
 };
 
-// ------ Slide 4: Capabilities / Services -----------------------
+// ------ Slide 5: Capabilities / Services -----------------------
 export const capabilities = {
   title: "CORE",
   titleAccent: "CAPABILITIES",
@@ -98,7 +125,7 @@ export const capabilities = {
   ],
 };
 
-// ------ Slide 5: How SocialLab Works ---------------------------
+// ------ Slide 6: How SocialLab Works ---------------------------
 export const roadmap = {
   title: "INNOVATION",
   titleAccent: "ROADMAP",
@@ -123,15 +150,13 @@ export const roadmap = {
   ],
 };
 
-// ------ Slide 6: National AI Framework -------------------------
-// Source: https://aiframework.sociallab.ai/
-// Confidence: Medium — URL confirmed, scope inferred
+// ------ Slide 7: National AI Framework -------------------------
 export const nationalAIFramework = {
   tag: "Public Framework",
   title: "NATIONAL AI",
   titleAccent: "FRAMEWORK",
   url: "aiframework.sociallab.ai",
-  body: "A public AI governance and strategy framework associated with SocialLab, designed to support institutions and public-sector organizations in planning, readiness, and responsible AI adoption.",
+  body: "The National AI Framework is SocialLab’s public AI governance and planning platform for governments and institutions. It supports AI readiness, maturity assessment, strategy, implementation priorities, and responsible adoption. It shows SocialLab’s ability to move from AI tools to national-scale AI planning and governance.",
   servesLabel: "Designed for",
   serves: ["Governments & Public Sector", "Institutions", "Policy Makers"],
   bullets: [
@@ -146,30 +171,7 @@ export const nationalAIFramework = {
   },
 };
 
-// ------ Slide 7: OWLink.ai -------------------------------------
-// Source: https://owlink.ai/
-// Confidence: Medium — URL confirmed, tagline confirmed; scope inferred
-export const owlink = {
-  tag: "Public Platform",
-  title: "OWLINK",
-  titleAccent: ".AI",
-  url: "owlink.ai",
-  body: "OWLink.ai is a public-facing platform positioned around intelligence for government and people. It appears to connect AI and data capabilities with civic and public-sector stakeholders.",
-  tagline: "Stealth Intelligence for Government and People",
-  bullets: [
-    "Public-facing intelligence platform serving civic and government needs",
-    "Bridges AI capabilities with public-sector decision-making",
-    "Part of SocialLab's ecosystem of public-interest digital properties",
-  ],
-  screenshots: {
-    hero: "Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/hero.png",
-    overview: "Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/overview.png",
-    features: "Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/features.png",
-  },
-};
-
-// ------ Slide 8: Portfolio / Academy / Events ------------------
-// Sources: portfolio.sociallab.ai, academy.sociallab.ai, events.sociallab.ai
+// ------ Slide 9: Portfolio / Academy / Events ------------------
 export const ecosystemSlide = {
   title: "THE SOCIALLAB",
   titleAccent: "ECOSYSTEM",
@@ -211,19 +213,17 @@ export const ecosystemSlide = {
   ],
 };
 
-// ------ Slide 9: Projects & Impact Areas -----------------------
-// All sources confirmed via public project pages on sociallab.ai
-// Showing top 6 — SYNLAB in data only, reserved for future slide
+// ------ Slide 10: Projects & Impact Areas -----------------------
 export const projects = {
   title: "PROJECTS ACROSS",
   titleAccent: "PUBLIC-INTEREST DOMAINS",
-  subtitle: "Concrete AI and data initiatives spanning crisis response, media, governance, health, environment, and education.",
+  subtitle: "These projects show SocialLab’s repeatable pattern: using AI and data to turn complex public problems into usable platforms, dashboards, training systems, and decision-support tools.",
   cards: [
     {
       name: "Data for Crisis",
       tag: "Crisis & Open Data",
       tagColor: "#D6766B",
-      desc: "An open data platform that gives journalists, NGOs, and researchers access to social media data on crisis topics such as migration and pandemic — developed with Deutsche Welle Akademie and supported by BMZ.",
+      desc: "An open data platform giving journalists, NGOs, and researchers access to social media data on crisis topics like migration and pandemic.",
       aiAngle: "Social listening · Open data · Analytics",
       url: "sociallab.ai/project/data-for-crisis/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/Data_for_Crisis/screenshots/hero.png",
@@ -233,17 +233,17 @@ export const projects = {
       name: "Disinformation Demasked",
       tag: "Media & Information",
       tagColor: "#005B57",
-      desc: "A collaborative initiative by DW Akademie, DW ReCo, and SocialLab — using AI and LLMs to analyze propaganda and disinformation campaigns targeting the Arabic-speaking world.",
+      desc: "A collaborative initiative using AI and LLMs to analyze propaganda and disinformation campaigns targeting the Arabic-speaking world.",
       aiAngle: "LLMs · NLP · Narrative analysis",
       url: "sociallab.ai/project/disinfo-demasked/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/Disinformation_Demasked/screenshots/hero.png",
       preview: "Presentation_Evidence_Pack/Projects_and_Initiatives/Disinformation_Demasked/screenshots/project_preview.png",
     },
     {
-      name: "Elections Monitoring & Open Data",
+      name: "Elections Monitoring",
       tag: "Governance",
       tagColor: "#00635F",
-      desc: "An open-data elections monitoring dashboard developed for the 2022 Lebanon elections — enabling journalists, researchers, and the public to interactively explore election data.",
+      desc: "An open-data elections monitoring dashboard enabling journalists, researchers, and the public to interactively explore election data.",
       aiAngle: "Dashboards · Open data · Civic intelligence",
       url: "sociallab.ai/project/elections-monitoring/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/Elections_Monitoring_Open_Data/screenshots/hero.png",
@@ -253,7 +253,7 @@ export const projects = {
       name: "COVID Intelligent Project",
       tag: "Healthcare & Public Health",
       tagColor: "#F4A261",
-      desc: "An interactive dashboard applying ML and NLP to analyze public discourse on COVID-19 across 70+ languages — supporting researchers, institutions, and global health response.",
+      desc: "An interactive dashboard applying ML and NLP to analyze public discourse on COVID-19 across 70+ languages, supporting global health response.",
       aiAngle: "ML · NLP · 70+ languages · Social analytics",
       url: "sociallab.ai/project/covid/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/COVID_Intelligent_Project/screenshots/hero.png",
@@ -263,7 +263,7 @@ export const projects = {
       name: "Code Her",
       tag: "Education & Gender Equity",
       tagColor: "#E94B2E",
-      desc: "A data journalism training program designed by SocialLab and Deutsche Welle Akademie to qualify female journalists in the MENA region — combining data skills with storytelling over 14 weeks.",
+      desc: "A data journalism training program designed to qualify female journalists in the MENA region, combining data skills with storytelling.",
       aiAngle: "Data journalism · Training · MENA region",
       url: "sociallab.ai/project/code-her/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/Code_Her/screenshots/hero.png",
@@ -273,7 +273,7 @@ export const projects = {
       name: "Intelligent Trash Locator",
       tag: "Environment",
       tagColor: "#5B8A7D",
-      desc: "A drone-based AI detection system built by SocialLab Innovation Factory that identifies trash and other objects from the air using edge computing — enabling smarter, faster waste management.",
+      desc: "A drone-based AI detection system that identifies trash from the air using edge computing, enabling smarter, faster waste management.",
       aiAngle: "Computer vision · Edge AI · Drone detection",
       url: "sociallab.ai/project/intelligent-trash-locator/",
       screenshot: "Presentation_Evidence_Pack/Projects_and_Initiatives/Intelligent_Trash_Locator/screenshots/hero.png",
@@ -282,16 +282,15 @@ export const projects = {
   ],
 };
 
-// ------ Slide 10: Credibility & Closing -------------------------
+// ------ Slide 11: Credibility & Closing -------------------------
 export const closing = {
-  title: "READY TO",
-  titleAccent: "INNOVATE?",
-  body: "SocialLab connects technical AI with responsible, practical, and human-centered impact. Partner with us to build intelligent systems that help organizations move from AI ambition to meaningful deployment.",
+  title: "SOCIALLAB TURNS",
+  titleAccent: "RESPONSIBLE AI INTO PRACTICAL PUBLIC VALUE",
+  body: "Through its Innovation Factory, Academy, public platforms, and project portfolio, SocialLab helps organizations move from AI strategy to real systems, trained teams, and measurable impact.",
   highlights: [
-    "Public portfolio and verified case studies",
-    "Work across healthcare, media, education, governance, crisis response, and environment",
-    "Public frameworks, platforms, academy programs, and events",
-    "Responsible AI that is practical, explainable, and useful for society",
+    "Public portfolio of verified case studies",
+    "Work across health, media, governance, crisis response, education, and environment",
+    "Public frameworks, platforms, academy programs, and project portfolio",
   ],
   cta: "START A CONVERSATION",
   credibilityCategories: [
@@ -313,12 +312,12 @@ export const closing = {
 // ------ Navbar slide labels ------------------------------------
 export const SLIDE_LABELS = [
   "Hero",
+  "What We Do",
   "Who We Are",
   "Mission",
   "Capabilities",
   "Roadmap",
   "AI Framework",
-  "OWLink",
   "Ecosystem",
   "Projects",
   "Contact",

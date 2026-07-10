@@ -7,9 +7,6 @@ import nafHero from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks
 import nafOverview from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/National_AI_Framework/screenshots/overview.png";
 import nafFeatures from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/National_AI_Framework/screenshots/features.png";
 
-import owlHero from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/hero.png";
-import owlOverview from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/overview.png";
-import owlFeatures from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/OWLink/screenshots/features.png";
 
 import portHero from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/SocialLab_Portfolio/screenshots/hero.png";
 import portOverview from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/SocialLab_Portfolio/screenshots/overview.png";
@@ -41,12 +38,12 @@ import itlPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiati
 
 import {
   hero,
+  whatWeDo,
   whoWeAre,
   mission,
   capabilities,
   roadmap,
   nationalAIFramework,
-  owlink,
   ecosystemSlide,
   projects,
   closing,
@@ -87,7 +84,7 @@ function Navbar({ activeIndex, onJump }: { activeIndex: number; onJump: (index: 
       </div>
 
       <div className="hidden md:flex items-center space-x-6">
-        {SLIDE_LABELS.slice(0, 6).map((slide, i) => (
+        {SLIDE_LABELS.slice(0, 7).map((slide, i) => (
           <div key={slide} className="relative cursor-pointer group" onClick={() => onJump(i)}>
             <span
               className={`text-sm tracking-widest transition-colors duration-300 ${
@@ -228,7 +225,38 @@ function HeroSlide() {
   );
 }
 
-// Slide 2 — Who SocialLab Is
+// Slide 2 — What SocialLab Does
+function WhatWeDoSlide() {
+  const d = whatWeDo;
+  return (
+    <div className="h-full w-full bg-sand flex flex-col justify-center px-6 md:px-24 pt-20 md:pt-24 pb-8 md:pb-4">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-6 md:mb-8">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-primary-teal tracking-[0.06em] md:tracking-[0.12em] mb-2 md:mb-3">
+          {d.title} <span className="text-coral">{d.titleAccent}</span>
+        </h2>
+        <p className="text-base md:text-lg text-muted-teal max-w-3xl">{d.body}</p>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+        {d.items.map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
+            className="bg-off-white p-4 md:p-6 lg:p-7 rounded-[14px] md:rounded-[16px] border border-primary-teal/10 hover:shadow-sm transition-shadow group relative overflow-hidden"
+          >
+            <div className="text-coral font-mono text-xl mb-3">0{i+1}</div>
+            <h3 className="text-sm md:text-base font-semibold text-primary-teal tracking-wider mb-1 md:mb-2 leading-snug">{item.title}</h3>
+            <p className="text-muted-teal leading-relaxed text-xs md:text-sm">{item.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Slide 3 — Who SocialLab Is
 function WhoWeAreSlide() {
   return (
     <div className="h-full w-full bg-off-white flex flex-col justify-center px-6 md:px-24 pt-20 md:pt-24 pb-8 md:pb-0">
@@ -434,58 +462,6 @@ function NationalAIFrameworkSlide() {
             <ScreenshotCard src={nafOverview} alt="National AI Framework overview" className="aspect-[4/3]" />
             <ScreenshotCard src={nafFeatures} alt="National AI Framework features" className="aspect-[4/3]" />
           </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-// Slide 7 — OWLink.ai
-function OWLinkSlide() {
-  const d = owlink;
-  return (
-    <div className="h-full w-full bg-sand flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-20 md:pt-24 pb-8 md:pb-0 overflow-hidden">
-      <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-10 items-center w-full max-w-7xl mx-auto">
-        {/* LEFT: larger screenshot stack */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: EASE }}
-          className="relative flex flex-col gap-3 md:gap-4 order-2 md:order-1"
-        >
-          <ScreenshotCard src={owlHero} alt="OWLink.ai hero" className="w-full aspect-[16/8]" />
-          <div className="grid grid-cols-2 gap-3 md:gap-4">
-            <ScreenshotCard src={owlOverview} alt="OWLink.ai overview" className="aspect-[4/3]" />
-            <ScreenshotCard src={owlFeatures} alt="OWLink.ai features" className="aspect-[4/3]" />
-          </div>
-        </motion.div>
-
-        {/* RIGHT: text content */}
-        <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: EASE }} className="order-1 md:order-2">
-          <div className="font-mono text-xs tracking-widest text-orange-red mb-3 flex items-center gap-2 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-red" />
-            {d.tag}
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-primary-teal mb-2 tracking-[0.06em] md:tracking-[0.1em] leading-tight">
-            {d.title}<span className="text-coral">{d.titleAccent}</span>
-          </h2>
-          <p className="font-mono text-xs md:text-sm text-muted-teal/70 tracking-wider mb-4 italic">"{d.tagline}"</p>
-
-          <p className="text-sm md:text-base lg:text-lg text-muted-teal leading-relaxed mb-5">{d.body}</p>
-
-          <ul className="space-y-3 mb-5">
-            {d.bullets.map((b, i) => (
-              <motion.li key={i} initial={{ opacity: 0, x: 15 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }} className="flex items-start gap-3">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0" />
-                <span className="text-sm md:text-base text-muted-teal leading-relaxed">{b}</span>
-              </motion.li>
-            ))}
-          </ul>
-
-          <a href={`https://${d.url}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-coral/70 text-xs font-mono tracking-widest hover:text-coral transition-colors">
-            {d.url}
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
         </motion.div>
       </div>
     </div>
@@ -732,12 +708,12 @@ export default function App() {
         <style>{`div::-webkit-scrollbar { display: none; }`}</style>
 
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><HeroSlide /></section>
+        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><WhatWeDoSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><WhoWeAreSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><MissionSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><CapabilitiesSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><RoadmapSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><NationalAIFrameworkSlide /></section>
-        <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><OWLinkSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><EcosystemSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><ProjectsSlide /></section>
         <section className="md:snap-start w-full min-h-[100svh] md:h-[100svh] md:shrink-0"><ClosingSlide /></section>
