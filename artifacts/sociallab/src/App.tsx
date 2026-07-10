@@ -148,19 +148,19 @@ function Navbar({ activeIndex, onJump }: { activeIndex: number; onJump: (index: 
 
 function ProgressRail({ activeIndex, onJump }: { activeIndex: number; onJump: (index: number) => void }) {
   return (
-    <div className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center space-y-3">
+    <div className="hidden md:flex fixed left-1/2 bottom-6 -translate-x-1/2 z-50 flex-row items-center space-x-3">
       {SLIDE_LABELS.map((slide, i) => (
         <button
           key={slide}
           onClick={() => onJump(i)}
-          className="group relative flex items-center justify-center w-8 h-8 focus:outline-none"
+          className="group relative flex items-center justify-center w-6 h-6 focus:outline-none"
         >
           <div
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               activeIndex === i ? "bg-orange-red scale-150" : "bg-primary-teal/30 group-hover:bg-primary-teal"
             }`}
           />
-          <span className="absolute right-full mr-4 text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-primary-teal">
+          <span className="absolute bottom-full mb-2 text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-primary-teal">
             {slide}
           </span>
         </button>
@@ -683,9 +683,9 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         goToSlide(activeIndex + 1);
-      } else if (e.key === "ArrowLeft") {
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         goToSlide(activeIndex - 1);
       }
     };
