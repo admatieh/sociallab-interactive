@@ -538,15 +538,15 @@ function ProjectsSlide() {
 
   return (
     // pt-20/pt-24 ensures title clears the fixed navbar on all screen sizes
-    <div className="h-full w-full bg-sand flex flex-col px-6 md:px-24 pt-20 md:pt-24 pb-6 md:pb-4 overflow-y-auto md:overflow-hidden">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-4 md:mb-6 shrink-0">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-medium text-primary-teal tracking-[0.06em] md:tracking-[0.12em] mb-1 md:mb-2">
+    <div className="h-full w-full bg-sand flex flex-col px-6 md:px-24 pt-20 md:pt-24 pb-6 md:pb-4 overflow-y-auto lg:overflow-hidden">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="mb-3 md:mb-5 shrink-0">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary-teal tracking-[0.06em] md:tracking-[0.10em] mb-1">
           {d.title} <span className="text-coral">{d.titleAccent}</span>
         </h2>
-        <p className="text-sm md:text-base lg:text-lg text-muted-teal max-w-2xl">{d.subtitle}</p>
+        <p className="text-xs md:text-sm lg:text-base text-muted-teal max-w-3xl leading-relaxed">{d.subtitle}</p>
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 flex-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 flex-1 content-start md:content-stretch">
         {d.cards.map((card, i) => (
           <motion.div
             key={i}
@@ -556,30 +556,30 @@ function ProjectsSlide() {
             className="group bg-off-white border border-primary-teal/10 rounded-[12px] md:rounded-[14px] overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col"
           >
             {/* Screenshot */}
-            <div className="relative overflow-hidden aspect-[16/7]">
+            <div className="relative overflow-hidden h-[180px] md:h-[160px] lg:h-[140px] xl:h-[180px] shrink-0">
               <img
                 src={heroImgs[i]}
                 alt={`${card.name} screenshot`}
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
-              {/* Preview badge — slightly larger */}
-              <div className="absolute top-1.5 right-1.5 w-12 md:w-16 border border-white/70 shadow-sm rounded overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
+              {/* Preview badge */}
+              <div className="absolute top-1.5 right-1.5 w-12 md:w-14 border border-white/70 shadow-sm rounded overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
                 <img src={previewImgs[i]} alt="" className="w-full object-cover" />
               </div>
               {/* Tag overlay */}
-              <div className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[9px] md:text-[10px] font-mono tracking-widest text-white font-medium"
+              <div className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[9px] font-mono tracking-widest text-white font-medium"
                 style={{ background: `linear-gradient(to top, ${card.tagColor}CC, transparent)` }}>
                 {card.tag.toUpperCase()}
               </div>
             </div>
 
-            <div className="p-3 md:p-4 flex flex-col flex-1">
-              <h3 className="text-sm md:text-base font-semibold text-primary-teal tracking-wider mb-1 group-hover:text-coral transition-colors leading-snug">
+            <div className="p-3 lg:p-[14px] xl:p-4 flex flex-col flex-1">
+              <h3 className="text-sm md:text-base lg:text-[15px] font-semibold text-primary-teal tracking-wider mb-1 group-hover:text-coral transition-colors leading-tight truncate">
                 {card.name}
               </h3>
-              <p className="text-xs md:text-sm text-muted-teal leading-relaxed flex-1 line-clamp-3">{card.desc}</p>
-              <div className="mt-2 font-mono text-[9px] md:text-[10px] tracking-wider text-muted-teal/60 border-t border-primary-teal/5 pt-2">
+              <p className="text-[11px] md:text-xs lg:text-[12px] text-muted-teal leading-snug flex-1 line-clamp-2 mb-1">{card.desc}</p>
+              <div className="mt-auto font-mono text-[9px] tracking-wider text-muted-teal/60 border-t border-primary-teal/5 pt-1.5 truncate">
                 {card.aiAngle}
               </div>
             </div>
