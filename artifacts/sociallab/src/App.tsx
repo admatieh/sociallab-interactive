@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import heroImage from "@assets/SocialLab-Home-Main-Slider-2_1783330194635.png";
 
 // Platform screenshots
-import nafHero from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/National_AI_Framework/screenshots/hero.png";
+import nafHero from "@/assets/projects/national-ai-framework.png";
 import nafOverview from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/National_AI_Framework/screenshots/overview.png";
 import nafFeatures from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/National_AI_Framework/screenshots/features.png";
 
@@ -18,22 +18,22 @@ import evtHero from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks
 import evtOverview from "@assets/Presentation_Evidence_Pack/Platforms_and_Frameworks/SocialLab_Events/screenshots/overview.png";
 
 // Project screenshots
-import dfcHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Data_for_Crisis/screenshots/hero.png";
+import dfcHero from "@/assets/projects/data-for-crisis.png";
 import dfcPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Data_for_Crisis/screenshots/project_preview.png";
 
-import ddHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Disinformation_Demasked/screenshots/hero.png";
+import ddHero from "@/assets/projects/disinformation-demasked.png";
 import ddPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Disinformation_Demasked/screenshots/project_preview.png";
 
-import elHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Elections_Monitoring_Open_Data/screenshots/hero.png";
+import elHero from "@/assets/projects/elections-monitoring.png";
 import elPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Elections_Monitoring_Open_Data/screenshots/project_preview.png";
 
-import covidHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/COVID_Intelligent_Project/screenshots/hero.png";
+import covidHero from "@/assets/projects/covid-intelligent.png";
 import covidPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/COVID_Intelligent_Project/screenshots/project_preview.png";
 
-import codeHerHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Code_Her/screenshots/hero.png";
+import codeHerHero from "@/assets/projects/code-her.png";
 import codeHerPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Code_Her/screenshots/project_preview.png";
 
-import itlHero from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Intelligent_Trash_Locator/screenshots/hero.png";
+import itlHero from "@/assets/projects/intelligent-trash-locator.png";
 import itlPreview from "@assets/Presentation_Evidence_Pack/Projects_and_Initiatives/Intelligent_Trash_Locator/screenshots/project_preview.png";
 
 import {
@@ -444,8 +444,8 @@ function NationalAIFrameworkSlide() {
             ))}
           </ul>
 
-          <a href={`https://${d.url}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-coral/70 text-xs font-mono tracking-widest hover:text-coral transition-colors">
-            {d.url}
+          <a href={d.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-coral/70 text-xs font-mono tracking-widest hover:text-coral transition-colors uppercase">
+            View project
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         </motion.div>
@@ -548,8 +548,12 @@ function ProjectsSlide() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 flex-1 content-start md:content-stretch">
         {d.cards.map((card, i) => (
-          <motion.div
+          <motion.a
             key={i}
+            href={card.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${card.name} project`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
@@ -579,11 +583,17 @@ function ProjectsSlide() {
                 {card.name}
               </h3>
               <p className="text-[11px] md:text-xs lg:text-[12px] text-muted-teal leading-snug flex-1 line-clamp-2 mb-1">{card.desc}</p>
-              <div className="mt-auto font-mono text-[9px] tracking-wider text-muted-teal/60 border-t border-primary-teal/5 pt-1.5 truncate">
-                {card.aiAngle}
+              <div className="flex items-center justify-between mt-auto border-t border-primary-teal/5 pt-1.5">
+                <div className="font-mono text-[9px] tracking-wider text-muted-teal/60 truncate pr-2">
+                  {card.aiAngle}
+                </div>
+                <span className="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider text-coral/80 uppercase shrink-0 group-hover:text-coral transition-colors">
+                  View project
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </span>
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </div>
