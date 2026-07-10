@@ -458,7 +458,7 @@ function NationalAIFrameworkSlide() {
           className="relative flex flex-col gap-3 md:gap-4"
         >
           <ScreenshotCard src={nafHero} alt="National AI Framework hero" className="w-full aspect-[16/8]" />
-          <div className="grid grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <ScreenshotCard src={nafOverview} alt="National AI Framework overview" className="aspect-[4/3]" />
             <ScreenshotCard src={nafFeatures} alt="National AI Framework features" className="aspect-[4/3]" />
           </div>
@@ -682,7 +682,17 @@ export default function App() {
 
   const numSlides = slides.length;
 
+  const isMobile = () => window.innerWidth <= 768;
+
   const goToSlide = (index: number) => {
+    if (isMobile()) {
+      const slideEl = document.getElementById(`slide-${index}`);
+      if (slideEl) {
+        slideEl.scrollIntoView({ behavior: "smooth" });
+      }
+      setActiveIndex(index);
+      return;
+    }
     if (index < 0 || index >= numSlides || index === activeIndex || isAnimating.current) return;
     isAnimating.current = true;
     setActiveIndex(index);
@@ -693,6 +703,7 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isMobile()) return;
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         goToSlide(activeIndex + 1);
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
@@ -704,6 +715,7 @@ export default function App() {
     let accumulatedDeltaY = 0;
 
     const handleWheel = (e: WheelEvent) => {
+      if (isMobile()) return;
       // Allow internal scrolling if the target or its parents have vertical overflow
       const target = e.target as HTMLElement;
       let el: HTMLElement | null = target;
@@ -754,6 +766,7 @@ export default function App() {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (isMobile()) return;
       const target = e.target as HTMLElement;
       let el: HTMLElement | null = target;
       let canScroll = false;
@@ -772,6 +785,7 @@ export default function App() {
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      if (isMobile()) return;
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
       const dx = touchStartX - touchEndX;
@@ -800,11 +814,11 @@ export default function App() {
   }, [activeIndex]);
 
   return (
-    <div className="h-[100dvh] w-full overflow-hidden bg-off-white font-sans text-primary-teal relative">
+    <div className="h-[100dvh] w-full overflow-hidden bg-off-white font-sans text-primary-teal relative presentation-stage">
       <Navbar activeIndex={activeIndex} onJump={goToSlide} />
       <ProgressRail activeIndex={activeIndex} onJump={goToSlide} />
 
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden presentation-stage-inner">
         {slides.map((slide, i) => {
           let transform = "translateX(0)";
           let opacity = 1;
@@ -826,7 +840,8 @@ export default function App() {
           return (
             <div
               key={i}
-              className="absolute inset-0 transition-all duration-500 ease-out"
+              id={`slide-${i}`}
+              className="absolute inset-0 transition-all duration-500 ease-out slide-container"
               style={{
                 transform,
                 opacity,
