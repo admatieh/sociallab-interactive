@@ -807,7 +807,7 @@ export default function App() {
           let transform = "translateX(0)";
           let opacity = 1;
           let zIndex = 10;
-          let pointerEvents = "auto" as const;
+          let pointerEvents: "auto" | "none" = "auto";
 
           if (i < activeIndex) {
             transform = "translateX(-100%)";
